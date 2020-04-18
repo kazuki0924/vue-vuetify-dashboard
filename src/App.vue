@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-card>
+    <v-card width="400" class="mx-auto mt-5">
       <v-card-title>
         <h1 class="display-1">Login</h1>
       </v-card-title>
@@ -11,12 +11,13 @@
             type="password"
             label="Password"
             prepend-icon="mdi-lock"
+            append-icon="mdi-eye-off"
           />
         </v-form>
       </v-card-text>
       <v-card-actions>
-        <v-btn>Register</v-btn>
-        <v-btn>Login</v-btn>
+        <v-btn color="success">Register</v-btn>
+        <v-btn color="info">Login</v-btn>
       </v-card-actions>
     </v-card>
   </v-app>
