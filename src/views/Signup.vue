@@ -3,7 +3,7 @@
     <v-row>
       <v-col>
         <h1>Signup</h1>
-        <v-form>
+        <v-form ref="signUpForm">
           <v-text-field
             label="Email"
             type="email"
@@ -23,14 +23,17 @@
           ></v-text-field>
           <v-date-picker v-model="birthday"></v-date-picker>
           <v-checkbox
+            class="mb-4"
             label="Agree to terms & conditions"
             v-model="agreeToTerms"
             :rules="agreeToTermsRules"
             required
           ></v-checkbox>
-          <v-btn type="submit" color="primary">Submit</v-btn>
-          <v-btn color="warning">Reset Validation</v-btn>
-          <v-btn color="error">Reset</v-btn>
+          <v-btn class="mr-4" type="submit" color="primary">Submit</v-btn>
+          <v-btn class="mr-4" color="warning" @click="resetValidation"
+            >Reset Validation</v-btn
+          >
+          <v-btn ccolor="error" @click="resetForm">Reset</v-btn>
         </v-form>
       </v-col>
     </v-row>
@@ -60,6 +63,14 @@ export default {
         value.indexOf('.') <= value.length - 3 ||
         'Email should contain a valid domain extension.'
     ]
-  })
+  }),
+  methods: {
+    resetForm() {
+      this.$refs.signUpForm.reset()
+    },
+    resetValidation() {
+      this.$refs.signUpForm.resetValidation()
+    }
+  }
 }
 </script>
