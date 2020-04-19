@@ -29,7 +29,16 @@
             :rules="agreeToTermsRules"
             required
           ></v-checkbox>
-          <v-btn class="mr-4" type="submit" color="primary">Submit</v-btn>
+          <v-btn
+            class="mr-4"
+            type="submit"
+            color="primary"
+            :disabled="!formValidity"
+            >Submit</v-btn
+          >
+          <v-btn class="mr-4" color="success" @click="validateForm"
+            >Validate Form</v-btn
+          >
           <v-btn class="mr-4" color="warning" @click="resetValidation"
             >Reset Validation</v-btn
           >
@@ -62,7 +71,8 @@ export default {
       (value) =>
         value.indexOf('.') <= value.length - 3 ||
         'Email should contain a valid domain extension.'
-    ]
+    ],
+    formValidity: false
   }),
   methods: {
     resetForm() {
@@ -70,6 +80,9 @@ export default {
     },
     resetValidation() {
       this.$refs.signUpForm.resetValidation()
+    },
+    validateForm() {
+      this.$refs.signUpForm.validate()
     }
   }
 }
