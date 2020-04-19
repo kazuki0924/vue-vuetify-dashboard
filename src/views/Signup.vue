@@ -18,6 +18,7 @@
           <v-date-picker v-model="birthday"></v-date-picker>
           <!-- <v-checkbox label="Agree to terms & conditions"></v-checkbox> -->
           <v-switch label="Agree to terms & conditions"></v-switch>
+          <v-btn type="submit" color="primary">Submit</v-btn>
         </v-form>
       </v-col>
     </v-row>
