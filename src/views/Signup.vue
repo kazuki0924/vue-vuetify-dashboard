@@ -16,8 +16,12 @@
             readonly
           ></v-text-field>
           <v-date-picker v-model="birthday"></v-date-picker>
-          <!-- <v-checkbox label="Agree to terms & conditions"></v-checkbox> -->
-          <v-switch label="Agree to terms & conditions"></v-switch>
+          <v-checkbox
+            label="Agree to terms & conditions"
+            v-model="agreeToTerms"
+            :rules="agreeToTermsRules"
+            required
+          ></v-checkbox>
           <v-btn type="submit" color="primary">Submit</v-btn>
         </v-form>
       </v-col>
@@ -28,6 +32,12 @@
 <script>
 export default {
   data: () => ({
+    agreeToTerms: false,
+    agreeToTermsRules: [
+      (value) =>
+        !!value ||
+        'You must agree to the terms and conditions to sign up for an account.'
+    ],
     birthday: '',
     browsers: ['Chrome', 'Firefox', 'Safari', 'Edge', 'Brave']
   })
