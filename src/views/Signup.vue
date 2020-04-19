@@ -4,7 +4,13 @@
       <v-col>
         <h1>Signup</h1>
         <v-form>
-          <v-text-field label="Email" type="email"></v-text-field>
+          <v-text-field
+            label="Email"
+            type="email"
+            v-model="email"
+            :rules="emailRules"
+            required
+          ></v-text-field>
           <v-autocomplete
             label="Which browser do you use?"
             :items="browsers"
@@ -23,6 +29,8 @@
             required
           ></v-checkbox>
           <v-btn type="submit" color="primary">Submit</v-btn>
+          <v-btn color="warning">Reset Validation</v-btn>
+          <v-btn color="error">Reset</v-btn>
         </v-form>
       </v-col>
     </v-row>
@@ -39,7 +47,19 @@ export default {
         'You must agree to the terms and conditions to sign up for an account.'
     ],
     birthday: '',
-    browsers: ['Chrome', 'Firefox', 'Safari', 'Edge', 'Brave']
+    browsers: ['Chrome', 'Firefox', 'Safari', 'Edge', 'Brave'],
+    email: '',
+    emailRules: [
+      (value) => !!value || 'Email is required.',
+      (value) => value.indexOf('@') !== 0 || 'Email should have a username.',
+      (value) => value.includes('@') || 'Email should include an @ symbol.',
+      (value) =>
+        value.indexOf('.') - value.indexOf('@') > 1 ||
+        'Email should contain a valid domain',
+      (value) =>
+        value.indexOf('.') <= value.length - 3 ||
+        'Email should contain a valid domain extension.'
+    ]
   })
 }
 </script>
